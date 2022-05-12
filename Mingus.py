@@ -1,7 +1,13 @@
 #Welcome to life
 import requests
-
-
-for i in range(5):
+cats = []
+request = requests.get('https://catfact.ninja/fact').json()
+cats.append(request['fact'])
+for i in range(4):
     request = requests.get('https://catfact.ninja/fact').json()
-    print(request['fact'])
+    if request['fact'] in cats:
+        continue
+    else:
+        cats.append(request['fact'])
+
+print(cats)
